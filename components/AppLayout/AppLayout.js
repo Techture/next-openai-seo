@@ -12,7 +12,7 @@ export default function AppLayout({ children }) {
   return (
     <div className="grid grid-cols-[300px_1fr] h-screen max-h-screen">
       <div className="flex flex-col text-white overflow-hidden">
-        <div className="align-center bg-slate-800 px-2">
+        <div className="align-center bg-slate-800 px-5">
           <Logo />
           <Link href="/post/new" className="btn">
             New Post
