@@ -9,21 +9,7 @@ export default async function handler(req, res) {
 
   const { topic, keywords } = req.body;
 
-  //   const response = await openai.createCompletion({
-  //     model: 'text-davinci-003',
-  //     temperature: 0,
-  //     max_tokens: 3600,
-  //     prompt: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}.
-  //     The content should be formatted in SEO-friendly HTML.
-  //     The response must also include appropriate HTML title and meta description content.
-  //     The return format must be stringified JSON in the following format:
-  //     {
-  //        "postContent": post content goes here
-  //         "title": title goes here
-  //         "metaDescription": meta description goes here
-  //     }`,
-  //   });
-
+  // Post content
   const postContentResponse = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',
     temperature: 0,
@@ -34,9 +20,7 @@ export default async function handler(req, res) {
       },
       {
         role: 'user',
-        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}.
-       The content should be formatted in SEO-friendly HTML,
-       limited to the following HTML tag: h1, h2, h3, h4, h5, h6, strong, li, ol, ul i `,
+        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}. The response should be formatted in SEO-friendly HTML, limited to the following HTML tags: h1, h2, h3, h4, h5, h6, strong, li, ol, ul i`,
       },
     ],
   });
@@ -44,6 +28,7 @@ export default async function handler(req, res) {
   const postContent =
     postContentResponse.data.choices[0]?.message?.content || '';
 
+  // Title
   const titleResponse = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',
     temperature: 0,
@@ -54,9 +39,7 @@ export default async function handler(req, res) {
       },
       {
         role: 'user',
-        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}.
-            The content should be formatted in SEO-friendly HTML,
-       limited to the following HTML tag: h1, h2, h3, h4, h5, h6, strong, li, ol, ul i `,
+        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}. The response should be formatted in SEO-friendly HTML, limited to the following HTML tags: h1, h2, h3, h4, h5, h6, strong, li, ol, ul i`,
       },
       {
         role: 'assistant',
@@ -64,11 +47,12 @@ export default async function handler(req, res) {
       },
       {
         role: 'user',
-        content: 'Generate appropriate title tag text for the above blog post',
+        content: `Generate appropriate title tag text for the above ${postContent}`,
       },
     ],
   });
 
+  // Meta description
   const metaDescriptionResponse = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',
     temperature: 0,
@@ -79,9 +63,7 @@ export default async function handler(req, res) {
       },
       {
         role: 'user',
-        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}.
-        The content should be formatted in SEO-friendly HTML,
-       limited to the following HTML tag: h1, h2, h3, h4, h5, h6, strong, li, ol, ul i `,
+        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}. The response should be formatted in SEO-friendly HTML, limited to the following HTML tags: h1, h2, h3, h4, h5, h6, strong, li, ol, ul i`,
       },
       {
         role: 'assistant',
@@ -89,8 +71,7 @@ export default async function handler(req, res) {
       },
       {
         role: 'user',
-        content:
-          'Generate SEO-friendly meta description content for the above blog post',
+        content: `Generate SEO-friendly meta description content for the above ${postContent}`,
       },
     ],
   });
@@ -99,13 +80,11 @@ export default async function handler(req, res) {
   const metaDescription =
     metaDescriptionResponse.data.choices[0]?.message?.content || '';
 
-  console.log('POST CONTENT: ', postContent);
-  console.log('TITLE: ', title);
-  console.log('META DESC: ', metaDescription);
-
-  //   res.status(200).json({
-  //     post: JSON.parse(
-  //       postContentResponse.data.choices[0]?.text.split('\n').join('')
-  //     ),
-  //   });
+  res.status(200).json({
+    post: {
+      postContent,
+      title,
+      metaDescription,
+    },
+  });
 }
