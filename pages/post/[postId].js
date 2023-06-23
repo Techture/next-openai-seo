@@ -4,11 +4,16 @@ import clientPromise from '../../lib/mongodb';
 import { ObjectId } from 'mongodb';
 
 export default function Post(props) {
-  console.log(props);
+  console.log('Props: ', props);
 
   return (
-    <div>
-      <h1> Post page </h1>
+    <div className="overflow-auto h-full">
+      <div className="max-w-screen-sm mx-auto">
+        <div className="text-sm font-bold mt-6 p-2 bg-stone-200 rounded-sm">
+          Blog Post
+        </div>
+        <div dangerouslySetInnerHTML={{ __html: props.postContent || '' }} />
+      </div>
     </div>
   );
 }
