@@ -10,6 +10,13 @@ export default function Post(props) {
     <div className="overflow-auto h-full">
       <div className="max-w-screen-sm mx-auto">
         <div className="text-sm font-bold mt-6 p-2 bg-stone-200 rounded-sm">
+          SEO title and meta description
+        </div>
+        <div className="p-4 my-2 border border-stone-200 rounded-md">
+          <div className="text-blue-600 text-2xl font-bold">{props.title}</div>
+          <div className="mt-2 text-2xl font-bold">{props.metaDescription}</div>
+        </div>
+        <div className="text-sm font-bold mt-6 p-2 bg-stone-200 rounded-sm">
           Blog Post
         </div>
         <div dangerouslySetInnerHTML={{ __html: props.postContent || '' }} />

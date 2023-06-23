@@ -63,7 +63,7 @@ export default withApiAuthRequired(async function handler(req, res) {
       },
       {
         role: 'user',
-        content: `Generate appropriate title tag text for the above ${postContent}`,
+        content: `Generate appropriate title text for the above ${postContent}`,
       },
     ],
   });
