@@ -5,7 +5,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Logo } from '../Logo';
 
-export default function AppLayout({ children, availableTokens, posts }) {
+export default function AppLayout({
+  children,
+  availableTokens,
+  posts,
+  postId,
+}) {
   const { user } = useUser();
 
   return (
@@ -21,12 +26,15 @@ export default function AppLayout({ children, availableTokens, posts }) {
             <span className="pl-1">{availableTokens} Tokens available</span>
           </Link>
         </div>
-        <div className="flex-1 overflow-auto bg-gradient-to-b from-slate-800 to-cyan-800">
+        {/* Posts */}
+        <div className="px-4 flex-1 overflow-auto bg-gradient-to-b from-slate-800 to-cyan-800">
           {posts.map((post) => (
             <Link
               key={post._id}
               href={`/post/${post._id}`}
-              className="block text-ellipsis overflow-hidden whitespace-nowrap my-1 px-2 bg-white/10 cursor-pointer rounded-sm"
+              className={`py-1 border border-white/0 block text-ellipsis overflow-hidden whitespace-nowrap my-1 px-2 bg-white/10 cursor-pointer rounded-sm ${
+                postId === post._id ? 'bg-white/20 border-white' : ''
+              }`}
             >
               {post.topic}
             </Link>
