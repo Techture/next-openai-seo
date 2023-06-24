@@ -22,6 +22,7 @@ export const getAppProps = async (ctx) => {
     .find({
       userId: user._id, // foreign key from momgodb
     })
+    .limit(5)
     .sort({ created: -1 })
     .toArray();
 
