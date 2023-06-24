@@ -46,7 +46,7 @@ export const PostsProvider = ({ children }) => {
   const setPostsFromSSR = useCallback((postsFromSSR = []) => {
     dispatch({
       type: 'addPosts',
-      posts,
+      posts: postsFromSSR,
     });
   }, []); // memoize so this doesn't re-render
 
@@ -62,16 +62,15 @@ export const PostsProvider = ({ children }) => {
 
       const json = await result.json();
       const postsResult = json.posts || [];
-      console.log('posts result: ', postsResult);
-
-      dispatch({
-        type: 'addPosts',
-        postsResult,
-      });
 
       if (postsResult.length < 5) {
         setNoMorePosts(true);
       }
+
+      dispatch({
+        type: 'addPosts',
+        posts: postsResult,
+      });
     },
     []
   );
