@@ -15,7 +15,8 @@ export default function AppLayout({
 }) {
   const { user } = useUser();
 
-  const { posts, setPostsFromSSR } = useContext(PostsContext);
+  const { posts, getPosts, noMorePosts, setPostsFromSSR } =
+    useContext(PostsContext);
 
   useEffect(() => {
     setPostsFromSSR(postsFromSSR);
@@ -47,9 +48,16 @@ export default function AppLayout({
               {post.topic}
             </Link>
           ))}
-          <div className="hover:underline text-sm text-slate-400 text-center cursor-pointer mt-4 ">
-            Load more posts
-          </div>
+          {!noMorePosts && (
+            <div
+              className="hover:underline text-sm text-slate-400 text-center cursor-pointer mt-4"
+              onClick={() =>
+                getPosts({ lastPostDate: posts[posts.length - 1].created })
+              }
+            >
+              Load more posts
+            </div>
+          )}
         </div>
         <div className="bg-cyan-800 flex items-center gap-2 border-t border-t-black/50 h-20 px-2">
           {!!user ? (
