@@ -6,8 +6,22 @@ export default PostsContext;
 
 export const PostsProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
-
   const [noMorePosts, setNoMorePosts] = useState(false);
+
+  // delete a post
+  const deletePost = useCallback((postId) => {
+    setPosts((value) => {
+      const newPosts = [];
+      value.forEach((post) => {
+        if (post._id !== postId) {
+          newPosts.push(post);
+        }
+      });
+      return newPosts;
+    });
+  }, []);
+
+  // set a post
   const setPostsFromSSR = useCallback((postsFromSSR = []) => {
     // setPosts(postsFromSSR);
 
@@ -58,6 +72,7 @@ export const PostsProvider = ({ children }) => {
 
   const contextValue = {
     posts,
+    deletePost,
     getPosts,
     setPostsFromSSR,
     noMorePosts,
