@@ -12,6 +12,7 @@ export default function AppLayout({
   availableTokens,
   posts: postsFromSSR,
   postId,
+  postCreated,
 }) {
   const { user } = useUser();
 
@@ -19,8 +20,15 @@ export default function AppLayout({
     useContext(PostsContext);
 
   useEffect(() => {
+    if (postId) {
+      const exists = postsFromSSR.find((post) => post._id === postId);
+      if (!exists) {
+        getPosts({ getNewerPosts: true, lastPostDate: postCreated });
+      }
+    }
+
     setPostsFromSSR(postsFromSSR);
-  }, [postsFromSSR, setPostsFromSSR]);
+  }, [getPosts, postId, postCreated, postsFromSSR, setPostsFromSSR]);
 
   return (
     <div className="grid grid-cols-[300px_1fr] h-screen max-h-screen">
