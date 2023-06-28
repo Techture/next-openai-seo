@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import HeroImage from '../public/hero.webp';
+import HeroImage from '../public/hero.jpg';
 import { Logo } from '../components/Logo/Logo';
 import Link from 'next/link';
 
@@ -10,8 +10,10 @@ export default function Home() {
       <div className="relative z-10 text-white px-10 py-5 text-center max-w-screen-sm bg-slate-900/90 rounded-md backdrop-blur-sm">
         <Logo />
         <p>
-          The AI powered SAAS solution to generate SEO-optimized blog posts in
-          minutes. Get high quality content, without sacrificing valuable time.
+          Our AI-powered SAAS solution generates SEO-optimized blog posts in
+          minutes while formatting the response in a clear, concise, and
+          easy-to-read manner. Save valuable time and receive high-quality
+          content with BlogOptima.
         </p>
         <Link href="/post/new" className="btn">
           Begin

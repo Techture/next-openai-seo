@@ -1,16 +1,21 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import AppLayout from '../../components/AppLayout/AppLayout';
 import { useRouter } from 'next/router';
 import { getAppProps } from '../../utils/getAppProps';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBrain } from '@fortawesome/free-solid-svg-icons';
+import { BrainCircuit } from 'lucide-react';
+// import { faBrain } from '@fortawesome/free-solid-svg-icons';
 export default function NewPost(props) {
-  const router = useRouter();
   const [topic, setTopic] = useState('');
   const [keywords, setKeywords] = useState('');
   const [generating, setGenerating] = useState(false);
+  const router = useRouter();
 
+  // refs
+  const topicInputRef = useRef(null);
+
+  // submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     setGenerating(true);
@@ -34,11 +39,15 @@ export default function NewPost(props) {
     }
   };
 
+  useEffect(() => {
+    topicInputRef.current.focus();
+  }, []);
+
   return (
     <div className="h-full overflow-hidden">
       {!!generating && (
-        <div className="text-green-500 flex h-full animate-pulse w-full flex-col justify-center items-center">
-          <FontAwesomeIcon icon={faBrain} className="text-8xl" />
+        <div className="bg-slate-800 flex h-full animate-pulse w-full flex-col justify-center items-center">
+          <BrainCircuit size={180} />
           <h5>Generating...</h5>
         </div>
       )}
@@ -53,6 +62,7 @@ export default function NewPost(props) {
                 <strong>Generate a blog post on the topic of:</strong>
               </label>
               <textarea
+                ref={topicInputRef}
                 className="resize-none border border-slate-500 w-full block my-2 px-4 py-2 rounded-sm"
                 value={topic}
                 onChange={(e) => setTopic(e.target.value)}
