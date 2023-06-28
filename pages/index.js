@@ -15,7 +15,7 @@ export default function Home() {
           manner. Save valuable time and receive high-quality content with
           BlogOptima.
         </p>
-        <Link href="/post/new" className="btn">
+        <Link href="/post/new" className="btn my-5">
           Begin
         </Link>
       </div>
