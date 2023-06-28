@@ -98,7 +98,7 @@ export default withApiAuthRequired(async function handler(req, res) {
       },
       {
         role: 'user',
-        content: `Generate SEO-friendly meta description content for the above ${postContent}`,
+        content: `Generate SEO-friendly meta description for the above ${postContent}`,
       },
     ],
   });
