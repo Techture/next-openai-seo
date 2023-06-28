@@ -22,8 +22,8 @@ export default function TokenTopup() {
         <p className="text-center">
           Purchase tokens to continue creating optimized blog posts. Click the
           Add Tokens button to add $9 worth of tokens to your account, and
-          you'll be directed to the Stripe payment page, where you can securely
-          enter your payment details.
+          you&apos;ll be directed to the Stripe payment page, where you can
+          securely enter your payment details.
         </p>
         <button className="btn my-5" onClick={handleClick}>
           Add Tokens
