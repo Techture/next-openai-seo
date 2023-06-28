@@ -1,11 +1,10 @@
-import { faBrain } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { BrainCircuit } from 'lucide-react';
 
 export const Logo = () => {
   return (
-    <div className="text-3xl text-center py-4 font-heading">
-      BlogStandard
-      <FontAwesomeIcon icon={faBrain} className="text-2xl text-slate-400" />
+    <div className="flex justify-center items-center text-3xl text-center py-4 font-heading">
+      <span className="mr-1">BlogOptima</span>
+      <BrainCircuit color="white" size={28} />
     </div>
   );
 };

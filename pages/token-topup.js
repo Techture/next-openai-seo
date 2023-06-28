@@ -1,6 +1,8 @@
 import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 import AppLayout from '../components/AppLayout/AppLayout';
 import { getAppProps } from '../utils/getAppProps';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStripe } from '@fortawesome/free-brands-svg-icons';
 
 export default function TokenTopup() {
   const handleClick = async () => {
@@ -14,11 +16,25 @@ export default function TokenTopup() {
   };
 
   return (
-    <div>
-      <h1> Token Topup page </h1>
-      <button className="btn" onClick={handleClick}>
-        Add tokens
-      </button>
+    <div className="h-full flex items-center justify-center bg-gradient-to-b from-slate-100 to-slate-300">
+      <div className="w-full max-w-screen-sm bg-slate-100 p-4 rounded-md shadow-xl border border-slate-200 shadow-slate-200">
+        <h1 className="text-center">Welcome to the Token Topup page</h1>
+        <p className="text-center">
+          Purchase tokens to continue creating optimized blog posts. Click the
+          Add Tokens button to add $9 worth of tokens to your account, and
+          you'll be directed to the Stripe payment page, where you can securely
+          enter your payment details.
+        </p>
+        <button className="btn my-5" onClick={handleClick}>
+          Add Tokens
+        </button>
+        <small className="flex items-center justify-center mt-4 mb-2 text-center">
+          <FontAwesomeIcon icon={faStripe} className="text-2xl" />
+          <span className="ml-1">
+            guarantees the confidentiality and security of your information.
+          </span>
+        </small>
+      </div>
     </div>
   );
 }

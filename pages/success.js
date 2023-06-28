@@ -4,8 +4,12 @@ import { getAppProps } from '../utils/getAppProps';
 
 export default function Success() {
   return (
-    <div>
-      <h1> Thank you for your purchase! </h1>
+    <div className="h-full flex items-center justify-center bg-gradient-to-b from-slate-100 to-slate-300">
+      <div className="w-full max-w-screen-sm bg-slate-100 p-4 rounded-md shadow-xl border border-slate-200 shadow-slate-200">
+        <h1 className="text-center">
+          Thanks for your purchase. Now go enjoy creating optimized blog posts.
+        </h1>
+      </div>
     </div>
   );
 }

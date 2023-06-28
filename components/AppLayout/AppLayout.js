@@ -38,7 +38,7 @@ export default function AppLayout({
           <Link href="/post/new" className="btn">
             New Post
           </Link>
-          <Link href="/token-topup" className="block mt-2 text-center">
+          <Link href="/token-topup" className="block my-4 text-center">
             <FontAwesomeIcon icon={faCoins} className="text-yellow-500" />
             <span className="pl-1">{availableTokens} Tokens available</span>
           </Link>
