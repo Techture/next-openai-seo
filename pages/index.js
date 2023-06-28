@@ -11,9 +11,9 @@ export default function Home() {
         <Logo />
         <p>
           Our AI-powered SAAS solution generates SEO-optimized blog posts in
-          minutes while formatting the response in a clear, concise, and
-          easy-to-read manner. Save valuable time and receive high-quality
-          content with BlogOptima.
+          minutes while formatting the response in a clear, and easy-to-read
+          manner. Save valuable time and receive high-quality content with
+          BlogOptima.
         </p>
         <Link href="/post/new" className="btn">
           Begin
