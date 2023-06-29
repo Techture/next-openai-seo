@@ -34,7 +34,7 @@ export default function AppLayout({
     <div className="grid grid-cols-[300px_1fr] h-screen max-h-screen">
       <div className="flex flex-col text-white overflow-hidden">
         <div className="align-center bg-slate-800 px-5">
-          <Logo />
+          <Logo size="small" />
           <Link href="/post/new" className="btn">
             New Post
           </Link>

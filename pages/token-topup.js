@@ -3,6 +3,7 @@ import AppLayout from '../components/AppLayout/AppLayout';
 import { getAppProps } from '../utils/getAppProps';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStripe } from '@fortawesome/free-brands-svg-icons';
+import { faCoins } from '@fortawesome/free-solid-svg-icons';
 
 export default function TokenTopup() {
   const handleClick = async () => {
@@ -18,12 +19,14 @@ export default function TokenTopup() {
   return (
     <div className="h-full flex items-center justify-center bg-gradient-to-b from-slate-100 to-slate-300">
       <div className="w-full max-w-screen-sm bg-slate-100 p-4 rounded-md shadow-xl border border-slate-200 shadow-slate-200">
-        <h1 className="text-center">Welcome to the Token Topup page</h1>
+        <h1 className="text-center">
+          <FontAwesomeIcon icon={faCoins} className="text-yellow-500 mr-3" />
+          Token Topup
+        </h1>
         <p className="text-center">
-          Purchase tokens to continue creating optimized blog posts. Click the
-          Add Tokens button to add $9 worth of tokens to your account, and
-          you&apos;ll be directed to the Stripe payment page, where you can
-          securely enter your payment details.
+          Purchase ten tokens for $1 and continue creating optimized blog posts.
+          Click the Add Tokens button and you&apos;ll be directed to the Stripe
+          payment page, where you can securely enter your payment details.
         </p>
         <button className="btn my-5" onClick={handleClick}>
           Add Tokens
