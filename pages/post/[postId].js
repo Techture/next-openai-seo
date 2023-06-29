@@ -13,6 +13,7 @@ export default function Post(props) {
   const router = useRouter();
   const { deletePost } = useContext(PostsContext);
 
+  // delete a post
   const handleDeleteConfirm = async () => {
     try {
       const response = await fetch(`/api/deletePost`, {
@@ -46,19 +47,19 @@ export default function Post(props) {
         <div className="text-sm font-bold mt-6 p-2 bg-stone-200 rounded-sm">
           Keywords
         </div>
-        <div className="flex flex-wrap pt-2 gap-1">
+        <div className="flex flex-wrap gap-2 my-3">
           {props.keywords.split(',').map((keyword, i) => (
             <div key={i} className="p-2 rounded-full bg-slate-800 text-white">
               <FontAwesomeIcon icon={faHashtag} /> {keyword}
             </div>
           ))}
         </div>
-        <div className="text-sm font-bold mt-6 p-2 bg-stone-200 rounded-sm">
+        <div className="text-sm font-bold my-2 p-2 bg-stone-200 rounded-sm">
           Blog Post
         </div>
         <div dangerouslySetInnerHTML={{ __html: props.postContent || '' }} />
 
-        <div className="my-4">
+        <div className="my-6 w-80 m-auto">
           {!showDeleteConfirm && (
             <button
               className="btn bg-red-600 hover:bg-red-700"
@@ -70,24 +71,26 @@ export default function Post(props) {
             </button>
           )}
           {!!showDeleteConfirm && (
-            <div>
-              <p className="p-2 bg-red-300 text-center">
-                Are you sure you want to delete this post? This action is
-                irreversible
-              </p>
-              <div className="grid grid-cols-2 gap-2">
-                <button
-                  className="btn bg-stone-600 hover:bg-stone-700"
-                  onClick={() => setShowDeleteConfirm(false)}
-                >
-                  cancel
-                </button>
-                <button
-                  className="btn bg-red-600 hover:bg-red-700"
-                  onClick={handleDeleteConfirm}
-                >
-                  confirm delete
-                </button>
+            <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+              <div className="bg-white p-5 rounded-md">
+                <p className="p-3 bg-red-300 text-center rounded-md">
+                  Are you sure you want to delete this post? This action is
+                  irreversible
+                </p>
+                <div className="grid grid-cols-2 gap-2 mt-4">
+                  <button
+                    className="btn bg-stone-600 hover:bg-stone-700"
+                    onClick={() => setShowDeleteConfirm(false)}
+                  >
+                    cancel
+                  </button>
+                  <button
+                    className="btn bg-red-600 hover:bg-red-700"
+                    onClick={handleDeleteConfirm}
+                  >
+                    confirm delete
+                  </button>
+                </div>
               </div>
             </div>
           )}

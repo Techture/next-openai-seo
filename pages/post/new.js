@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { getAppProps } from '../../utils/getAppProps';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { BrainCircuit } from 'lucide-react';
-// import { faBrain } from '@fortawesome/free-solid-svg-icons';
 export default function NewPost(props) {
   const [topic, setTopic] = useState('');
   const [keywords, setKeywords] = useState('');

@@ -12,9 +12,9 @@ export const Logo = ({ size }) => {
           <BrainCircuit className="ml-1" color="white" size={80} />
         </div>
       ) : (
-        <div className="flex justify-center items-center text-3xl text-center py-2 font-heading">
+        <div className="flex justify-center items-center text-3xl text-center py-5 font-heading">
           <span className="mr-1">BlogOptima</span>
-          <BrainCircuit className="ml-1" color="white" size={40} />
+          <BrainCircuit color="white" size={35} />
         </div>
       )}
     </>
