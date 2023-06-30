@@ -43,7 +43,7 @@ export default function NewPost(props) {
   }, []);
 
   return (
-    <div className="h-full overflow-hidden">
+    <div className="mt-5 h-full overflow-hidden">
       {!!generating && (
         <div className="bg-slate-100 flex h-full w-full flex-col justify-center items-center">
           <BrainCircuit size={180} />
