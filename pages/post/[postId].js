@@ -12,7 +12,6 @@ export default function Post(props) {
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const router = useRouter();
   const { deletePost } = useContext(PostsContext);
-
   // delete a post
   const handleDeleteConfirm = async () => {
     try {
@@ -108,17 +107,25 @@ export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx) {
     const props = await getAppProps(ctx);
 
+    // Retrieve the user session from the request
     const userSession = await getSession(ctx.req, ctx.res);
+
+    // Connect to the MongoDB database
     const client = await clientPromise;
     const db = client.db('BlogStandard');
+
+    // Find the user based on the auth0Id in the user session
     const user = await db.collection('users').findOne({
       auth0Id: userSession.user.sub,
     });
+
+    // Find the post based on the postId parameter and the user's _id
     const post = await db.collection('posts').findOne({
       _id: new ObjectId(ctx.params.postId),
       userId: user._id,
     });
 
+    // If the post doesn't exist, redirect the user to the /post/new page
     if (!post) {
       return {
         redirect: {
@@ -128,6 +135,7 @@ export const getServerSideProps = withPageAuthRequired({
       };
     }
 
+    // Return the props to be passed to the page component
     return {
       props: {
         id: ctx.params.postId,
@@ -141,3 +149,5 @@ export const getServerSideProps = withPageAuthRequired({
     };
   },
 });
+
+// Post.displayName = 'Post';
