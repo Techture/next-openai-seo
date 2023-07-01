@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="w-screen h-screen overflow-hidden flex justify-center items-center relative">
       <Image src={HeroImage} alt="Hero" fill className="absolute" />
-      <div className="w-64 sm:w-auto relative z-10 text-white px-5 py-5 text-center max-w-screen-sm bg-slate-900/90 rounded-md backdrop-blur-sm">
+      <div className="md:w-96 z-10 text-white px-7 py-7 relative text-center bg-slate-900/90  backdrop-blur-sm">
         <Logo size="big" />
         <p>
           An AI-powered SAAS solution that generates SEO-optimized blog posts in

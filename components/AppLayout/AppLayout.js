@@ -65,7 +65,7 @@ export default function AppLayout({
   }, [getPosts, postId, postCreated, postsFromSSR, setPostsFromSSR]);
 
   return (
-    <div className="md:flex h-screen">
+    <div className="flex h-screen flex-col">
       {/* start of sidebar */}
       <aside
         className={`${
@@ -174,7 +174,7 @@ export default function AppLayout({
       </div>
 
       {/* Main Content */}
-      <main className="md:pl-80 w-full h-full p-5 block mt-5">
+      <main className="md:pl-80 w-full h-full p-5 block mt-7">
         {/* individual posts */}
         {children}
       </main>
@@ -182,8 +182,8 @@ export default function AppLayout({
       {/* Overlay */}
       {isMobileView && (
         <div
-          className={`fixed top-0 left-0 w-full h-full bg-black ${
-            overlayVisible ? 'opacity-70' : 'opacity-0'
+          className={`top-0 left-0 w-full h-full bg-black ${
+            overlayVisible ? 'opacity-70 fixed' : 'opacity-0'
           } z-10`}
           onClick={handleToggleSidebar}
         />
