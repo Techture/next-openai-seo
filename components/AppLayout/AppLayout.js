@@ -65,7 +65,7 @@ export default function AppLayout({
   }, [getPosts, postId, postCreated, postsFromSSR, setPostsFromSSR]);
 
   return (
-    <div className="flex h-screen flex-col">
+    <div className="h-screen">
       {/* start of sidebar */}
       <aside
         className={`${
@@ -174,7 +174,7 @@ export default function AppLayout({
       </div>
 
       {/* Main Content */}
-      <main className="md:pl-80 w-full h-full p-5 block mt-7">
+      <main className="md:pl-80 w-full h-full p-5 pb-7 block mt-7">
         {/* individual posts */}
         {children}
       </main>
