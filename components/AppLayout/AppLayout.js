@@ -19,6 +19,40 @@ export default function AppLayout({
   const { posts, getPosts, noMorePosts, setPostsFromSSR } =
     useContext(PostsContext);
 
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [overlayVisible, setOverlayVisible] = useState(true);
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  // sidebar toggle
+  const handleToggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+
+    // Only toggle overlay visibility in mobile view
+    if (isMobileView) {
+      setOverlayVisible(!overlayVisible);
+    }
+
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('-translate-x-full');
+  };
+
+  // mobile resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth < 640);
+    };
+
+    // Call handleResize initially and add event listener
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  // posts
   useEffect(() => {
     if (postId) {
       const exists = postsFromSSR.find((post) => post._id === postId);
@@ -30,22 +64,13 @@ export default function AppLayout({
     setPostsFromSSR(postsFromSSR);
   }, [getPosts, postId, postCreated, postsFromSSR, setPostsFromSSR]);
 
-  const [sidebarOpen, setSidebarOpen] = useState(true);
-
-  // sidebar toggle
-  const handleToggleSidebar = () => {
-    const sidebar = document.getElementById('sidebar');
-
-    sidebar.classList.toggle('-translate-x-full');
-  };
-
   return (
     <div className="md:flex h-screen">
       {/* start of sidebar */}
       <aside
         className={`${
           sidebarOpen ? 'md:translate-x-0 z-30' : '-translate-x-full z-20'
-        } w-80 bg-gray-800 text-white py-5 space-y-0 md:block fixed inset-y-0 left-0 overflow-y-auto transition-transform duration-300 ease-in-out`}
+        } w-80 bg-gray-800 text-white py-5 space-y-5 md:block fixed inset-y-0 left-0 overflow-y-auto transition-transform duration-300 ease-in-out`}
         id="sidebar"
       >
         {/* Logo */}
@@ -53,7 +78,11 @@ export default function AppLayout({
           <div className="align-center bg-slate-800 px-5">
             <Logo size="small" />
 
-            <Link href="/post/new" className="btn my-7">
+            <Link
+              href="/post/new"
+              className="btn my-7"
+              onClick={isMobileView ? handleToggleSidebar : null}
+            >
               New Post
             </Link>
 
@@ -69,7 +98,7 @@ export default function AppLayout({
         </div>
 
         {/* Posts */}
-        <div className="px-4 flex-1 pb-5 overflow-auto bg-gradient-to-b from-slate-800 to-cyan-800">
+        <div className="pt-3 px-4 flex-1 pb-10 overflow-auto bg-gradient-to-b from-cyan-800 to-slate-800 space-y-2 flex flex-col">
           {posts.map((post) => (
             <Link
               key={post._id}
@@ -77,7 +106,7 @@ export default function AppLayout({
               className={`py-1 border border-white/0 block text-ellipsis overflow-hidden whitespace-nowrap my-1 px-2 bg-white/10 cursor-pointer rounded-sm ${
                 postId === post._id ? 'bg-white/20 border-white' : ''
               }`}
-              onClick={handleToggleSidebar}
+              onClick={isMobileView ? handleToggleSidebar : null}
             >
               {post.topic}
             </Link>
@@ -95,7 +124,7 @@ export default function AppLayout({
         </div>
 
         {/* User*/}
-        <div className="bg-cyan-800 flex w-full items-center gap-2 border-t border-t-black/50 h-20 px-2 absolute bottom-0">
+        <div className="bg-slate-800 flex w-full items-center gap-2 border-t border-t-black/50 h-20 px-2 absolute bottom-0">
           {!!user ? (
             <>
               <div className="min-width-[50px]">
@@ -145,13 +174,20 @@ export default function AppLayout({
       </div>
 
       {/* Main Content */}
-      <main
-        className={`md:pl-80 w-full p-5 mt-5 ${
-          sidebarOpen ? 'block' : 'hidden'
-        }`}
-      >
+      <main className="md:pl-80 w-full h-full p-5 block mt-5">
+        {/* individual posts */}
         {children}
       </main>
+
+      {/* Overlay */}
+      {isMobileView && (
+        <div
+          className={`fixed top-0 left-0 w-full h-full bg-black ${
+            overlayVisible ? 'opacity-70' : 'opacity-0'
+          } z-10`}
+          onClick={handleToggleSidebar}
+        />
+      )}
     </div>
   );
 }
