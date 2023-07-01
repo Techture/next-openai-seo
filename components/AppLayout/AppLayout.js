@@ -130,30 +130,34 @@ export default function AppLayout({
     // </div>
 
     <div className="md:flex h-screen">
+      {/* start of sidebar */}
       <aside
         className={`${
           sidebarOpen ? 'md:translate-x-0 z-30' : '-translate-x-full z-20'
-        } md:w-72 bg-gray-800 text-white py-5 space-y-0 md:block fixed inset-y-0 left-0 overflow-y-auto transition-transform duration-300 ease-in-out`}
+        } w-80 bg-gray-800 text-white py-5 space-y-0 md:block fixed inset-y-0 left-0 overflow-y-auto transition-transform duration-300 ease-in-out`}
         id="sidebar"
       >
-        {/* sidebar contents */}
+        {/* Logo */}
         <div className="block">
           <div className="align-center bg-slate-800 px-5">
             <Logo size="small" />
 
-            <Link href="/post/new" className="btn">
+            <Link href="/post/new" className="btn my-7">
               New Post
             </Link>
 
-            <Link href="/token-topup" className="block my-4 text-center">
-              <FontAwesomeIcon icon={faCoins} className="text-yellow-500" />
+            <Link href="/token-topup" className="block my-7 text-center">
+              <FontAwesomeIcon
+                icon={faCoins}
+                className="text-yellow-500 mr-1"
+              />
 
-              <span className="pl-1">{availableTokens} Tokens available</span>
+              <span className="pl-1">{availableTokens} Tokens Available</span>
             </Link>
           </div>
         </div>
 
-        {/* POSTS */}
+        {/* Posts */}
         <div className="px-4 flex-1 pb-5 overflow-auto bg-gradient-to-b from-slate-800 to-cyan-800">
           {posts.map((post) => (
             <Link
@@ -178,8 +182,8 @@ export default function AppLayout({
           )}
         </div>
 
-        {/* USER */}
-        <div className="bg-cyan-800 flex items-center gap-2 border-t border-t-black/50 h-20 px-2">
+        {/* User*/}
+        <div className="bg-cyan-800 flex w-full items-center gap-2 border-t border-t-black/50 h-20 px-2 absolute bottom-0">
           {!!user ? (
             <>
               <div className="min-width-[50px]">
@@ -192,7 +196,7 @@ export default function AppLayout({
                 />
               </div>
               <div className="flex-1">
-                <div className="font-bold">{user.email}</div>
+                <div className="font-normal">{user.email}</div>
                 <Link className="text-sm" href="/api/auth/logout">
                   Logout
                 </Link>
@@ -203,8 +207,9 @@ export default function AppLayout({
           )}
         </div>
       </aside>
+      {/* end of sidebar */}
 
-      {/* Toggle button */}
+      {/* Toggle Button */}
       <div className="text-center md:hidden absolute bg-slate-400 text-slate-800 p-2 rounded-md top-2 right-2 z-50">
         <button
           id="toggleSidebar"
@@ -218,16 +223,16 @@ export default function AppLayout({
             viewBox="0 0 20 20"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M4 6h16M4 12h16m-7 6h7"
             ></path>
           </svg>
         </button>
       </div>
 
-      {/* main content */}
+      {/* Main Content */}
       <main
         className={`md:pl-80 w-full p-5 mt-5 ${
           sidebarOpen ? 'block' : 'hidden'
