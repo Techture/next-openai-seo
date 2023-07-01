@@ -86,7 +86,11 @@ export default function AppLayout({
               New Post
             </Link>
 
-            <Link href="/token-topup" className="block my-7 text-center">
+            <Link
+              href="/token-topup"
+              className="block my-7 text-center"
+              onClick={isMobileView ? handleToggleSidebar : null}
+            >
               <FontAwesomeIcon
                 icon={faCoins}
                 className="text-yellow-500 mr-1"

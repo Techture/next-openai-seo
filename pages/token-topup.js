@@ -17,7 +17,7 @@ export default function TokenTopup() {
   };
 
   return (
-    <div className="h-full flex items-center justify-center bg-gradient-to-b from-slate-100 to-slate-300">
+    <div className="h-full flex items-center justify-center">
       <div className="w-full max-w-screen-sm bg-slate-100 p-4 rounded-md shadow-xl border border-slate-200 shadow-slate-200">
         <h1 className="text-center">
           <FontAwesomeIcon icon={faCoins} className="text-yellow-500 mr-3" />
