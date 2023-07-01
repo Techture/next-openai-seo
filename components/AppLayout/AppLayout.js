@@ -178,7 +178,7 @@ export default function AppLayout({
       </div>
 
       {/* Main Content */}
-      <main className="md:pl-80 w-full h-full p-5 pb-7 block mt-7">
+      <main className="md:pl-80 w-full h-full p-5 pb-7 block mt-0">
         {/* individual posts */}
         {children}
       </main>
