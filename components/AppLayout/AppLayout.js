@@ -204,15 +204,6 @@ export default function AppLayout({
         </div>
       </aside>
 
-      {/* Dark overlay */}
-      {/* {sidebarOpen && (
-        <div
-          className="md:hidden fixed top-0 left-0 right-0 bottom-0 bg-black opacity-50"
-          style={{ zIndex: 25 }}
-          onClick={handleToggleSidebar}
-        ></div>
-      )} */}
-
       {/* Toggle button */}
       <div className="text-center md:hidden absolute bg-slate-400 text-slate-800 p-2 rounded-md top-2 right-2 z-50">
         <button
