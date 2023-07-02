@@ -45,9 +45,9 @@ export default function NewPost(props) {
   return (
     <div className="h-screen">
       {!!generating && (
-        <div className="text-cyan-600 flex h-full w-full flex-col justify-center items-center">
-          <BrainCircuit className="animate-pulse" size={180} />
-          <h5 className="text-slate-600 animate-pulse">Generating...</h5>
+        <div className="bg-cyan-600 flex h-full w-full flex-col justify-center items-center ">
+          <BrainCircuit className="animate-pulse" color="cyan" size={180} />
+          <h5 className="text-cyan-300 animate-pulse">Generating...</h5>
         </div>
       )}
       {!generating && (

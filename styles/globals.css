@@ -58,4 +58,21 @@
   .btn {
     @apply disabled:bg-slate-200 disabled:cursor-not-allowed hover:no-underline bg-slate-300 tracking-wider w-full text-center text-slate-800 font-bold cursor-pointer uppercase px-4 py-2 rounded-md hover:bg-slate-500 transition-colors block hover:text-slate-100;
   }
+
+  @keyframes pulse-animation {
+    0% {
+      background-color: #10b981; /* Cyan color from Tailwind CSS */
+    }
+    50% {
+      background-color: #ffffff; /* White color */
+    }
+    100% {
+      background-color: #10b981; /* Back to cyan color */
+    }
+  }
+
+  /* Add animation class to animate the div */
+  .animate-pulse {
+    animation: pulse-animation 2s infinite;
+  }
 }

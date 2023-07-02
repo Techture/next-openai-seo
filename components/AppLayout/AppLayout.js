@@ -169,7 +169,7 @@ export default function AppLayout({
       {/* end of sidebar */}
 
       {/* Main Content */}
-      <main className="md:pl-80 w-full h-full p-3">
+      <main className="md:pl-80 w-full h-full p-4 pt-6">
         {/* individual posts */}
         {children}
       </main>
@@ -185,7 +185,7 @@ export default function AppLayout({
       )}
 
       {/* Toggle Button */}
-      <div className="text-center md:hidden absolute bg-slate-400 text-slate-800 p-2 rounded-md top-2 right-2 z-50">
+      <div className="text-center md:hidden absolute bg-slate-200 text-slate-800 p-2 rounded-md top-2 right-2 z-50">
         <button
           id="toggleSidebar"
           className="text-black focus:outline-none"
