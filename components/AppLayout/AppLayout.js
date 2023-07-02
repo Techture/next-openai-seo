@@ -64,71 +64,85 @@ export default function AppLayout({
     setPostsFromSSR(postsFromSSR);
   }, [getPosts, postId, postCreated, postsFromSSR, setPostsFromSSR]);
 
+  // adjust character length for post - make this a utility
+  const MAX_CHARACTERS = 37;
+
+  const trimText = (text) => {
+    if (text.length > MAX_CHARACTERS) {
+      return text.slice(0, MAX_CHARACTERS) + '...';
+    }
+    return text;
+  };
+
   return (
-    <div className="h-screen">
+    <div className="h-screen flex flex-col">
       {/* start of sidebar */}
       <aside
         className={`${
           sidebarOpen ? 'md:translate-x-0 z-30' : '-translate-x-full z-20'
-        } w-80 bg-gray-800 text-white py-5 space-y-5 md:block fixed inset-y-0 left-0 overflow-y-auto transition-transform duration-300 ease-in-out`}
+        } w-80 bg-gray-800 text-white py-4 space-y-5 md:block fixed inset-y-0 left-0 overflow-y-auto transition-transform duration-300 ease-in-out flex flex-col`}
         id="sidebar"
       >
-        {/* Logo */}
-        <div className="block">
-          <div className="align-center bg-slate-800 px-5">
-            <Logo size="small" />
+        {/* upper div to keep user at the bottom of the sidebar */}
+        <div className="flex flex-col flex-grow">
+          {/* Logo */}
+          <div className="block">
+            <div className="align-center bg-slate-800 px-5">
+              <Logo size="small" />
 
-            <Link
-              href="/post/new"
-              className="btn my-7"
-              onClick={isMobileView ? handleToggleSidebar : null}
-            >
-              New Post
-            </Link>
+              <Link
+                href="/post/new"
+                className="btn my-7"
+                onClick={isMobileView ? handleToggleSidebar : null}
+              >
+                New Post
+              </Link>
 
-            <Link
-              href="/token-topup"
-              className="block my-7 text-center"
-              onClick={isMobileView ? handleToggleSidebar : null}
-            >
-              <FontAwesomeIcon
-                icon={faCoins}
-                className="text-yellow-500 mr-1"
-              />
+              <Link
+                href="/token-topup"
+                className="block my-7 text-center"
+                onClick={isMobileView ? handleToggleSidebar : null}
+              >
+                <FontAwesomeIcon
+                  icon={faCoins}
+                  className="text-yellow-500 mr-1"
+                />
 
-              <span className="pl-1">{availableTokens} Tokens Available</span>
-            </Link>
+                <span className="pl-1">{availableTokens} Tokens Available</span>
+              </Link>
+            </div>
+          </div>
+
+          {/* Posts */}
+          <div className="pt-3 px-4 pb-10 overflow-auto bg-gradient-to-b from-cyan-800 to-slate-800 space-y-2 flex flex-col">
+            {posts.map((post) => (
+              <Link
+                key={post._id}
+                href={`/post/${post._id}`}
+                className={`flex-grow py-1 border border-white/0 block text-ellipsis whitespace-nowrap my-1 px-2 bg-white/10 cursor-pointer rounded-sm ${
+                  postId === post._id ? 'bg-white/20 border-white' : ''
+                }`}
+                onClick={isMobileView ? handleToggleSidebar : null}
+              >
+                {trimText(post.topic)}
+              </Link>
+            ))}
+            {!noMorePosts && (
+              <div
+                className="hover:underline text-sm text-slate-400 text-center cursor-pointer my-5 pt-5"
+                onClick={() =>
+                  getPosts({ lastPostDate: posts[posts.length - 1].created })
+                }
+              >
+                Load more posts
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Posts */}
-        <div className="pt-3 px-4 flex-1 pb-10 overflow-auto bg-gradient-to-b from-cyan-800 to-slate-800 space-y-2 flex flex-col">
-          {posts.map((post) => (
-            <Link
-              key={post._id}
-              href={`/post/${post._id}`}
-              className={`py-1 border border-white/0 block text-ellipsis overflow-hidden whitespace-nowrap my-1 px-2 bg-white/10 cursor-pointer rounded-sm ${
-                postId === post._id ? 'bg-white/20 border-white' : ''
-              }`}
-              onClick={isMobileView ? handleToggleSidebar : null}
-            >
-              {post.topic}
-            </Link>
-          ))}
-          {!noMorePosts && (
-            <div
-              className="hover:underline text-sm text-slate-400 text-center cursor-pointer my-5 pt-5"
-              onClick={() =>
-                getPosts({ lastPostDate: posts[posts.length - 1].created })
-              }
-            >
-              Load more posts
-            </div>
-          )}
-        </div>
-
+        {/* lower div to keep user at the bottom of the sidebar */}
         {/* User*/}
-        <div className="bg-slate-800 flex w-full items-center gap-2 border-t border-t-black/50 h-20 px-2 absolute bottom-0">
+        <div className="bg-slate-800 flex w-full items-center gap-2 border-t border-t-black/50 h-20 px-2">
           {!!user ? (
             <>
               <div className="min-width-[50px]">
@@ -154,6 +168,22 @@ export default function AppLayout({
       </aside>
       {/* end of sidebar */}
 
+      {/* Main Content */}
+      <main className="md:pl-80 w-full h-full p-3">
+        {/* individual posts */}
+        {children}
+      </main>
+
+      {/* Overlay */}
+      {isMobileView && (
+        <div
+          className={`top-0 left-0 w-full h-full bg-black ${
+            overlayVisible ? 'opacity-70 fixed' : 'opacity-0'
+          } z-10`}
+          onClick={handleToggleSidebar}
+        />
+      )}
+
       {/* Toggle Button */}
       <div className="text-center md:hidden absolute bg-slate-400 text-slate-800 p-2 rounded-md top-2 right-2 z-50">
         <button
@@ -176,22 +206,6 @@ export default function AppLayout({
           </svg>
         </button>
       </div>
-
-      {/* Main Content */}
-      <main className="md:pl-80 w-full h-full p-5 pb-7 block mt-0">
-        {/* individual posts */}
-        {children}
-      </main>
-
-      {/* Overlay */}
-      {isMobileView && (
-        <div
-          className={`top-0 left-0 w-full h-full bg-black ${
-            overlayVisible ? 'opacity-70 fixed' : 'opacity-0'
-          } z-10`}
-          onClick={handleToggleSidebar}
-        />
-      )}
     </div>
   );
 }

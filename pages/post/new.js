@@ -43,7 +43,7 @@ export default function NewPost(props) {
   }, []);
 
   return (
-    <div className="h-full overflow-hidden">
+    <div className="h-screen">
       {!!generating && (
         <div className="text-cyan-600 flex h-full w-full flex-col justify-center items-center">
           <BrainCircuit className="animate-pulse" size={180} />
