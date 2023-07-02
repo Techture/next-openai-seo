@@ -185,26 +185,28 @@ export default function AppLayout({
       )}
 
       {/* Toggle Button */}
-      <div className="text-center md:hidden absolute bg-slate-200 text-slate-800 p-2 rounded-md top-2 right-2 z-50">
-        <button
-          id="toggleSidebar"
-          className="text-black focus:outline-none"
-          onClick={handleToggleSidebar}
-        >
-          <svg
-            className="w-7 h-5"
-            fill="none"
-            stroke="black"
-            viewBox="0 0 20 20"
+      <div className="w-full bg-slate-500">
+        <div className="text-center md:hidden absolute bg-slate-200 text-slate-800 p-2 rounded-md top-2 right-2 z-50">
+          <button
+            id="toggleSidebar"
+            className="text-black focus:outline-none"
+            onClick={handleToggleSidebar}
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16m-7 6h7"
-            ></path>
-          </svg>
-        </button>
+            <svg
+              className="w-7 h-5"
+              fill="none"
+              stroke="black"
+              viewBox="0 0 20 20"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h16m-7 6h7"
+              ></path>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
   );

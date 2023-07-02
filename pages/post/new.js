@@ -43,7 +43,7 @@ export default function NewPost(props) {
   }, []);
 
   return (
-    <div className="flex justify-center items-center flex-1 h-screen p-4">
+    <div className="w-full flex justify-center items-center flex-1 h-screen p-4">
       {!!generating && (
         <div className="bg-cyan-600 flex h-full w-full flex-col justify-center items-center ">
           <BrainCircuit className="animate-pulse" color="cyan" size={180} />
