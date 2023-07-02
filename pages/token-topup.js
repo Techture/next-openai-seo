@@ -31,12 +31,18 @@ export default function TokenTopup() {
         <button className="btn my-5" onClick={handleClick}>
           Add Tokens
         </button>
-        <small className="flex items-center justify-center mt-4 mb-2 text-center">
-          <FontAwesomeIcon icon={faStripe} className="text-2xl" />
-          <span className="ml-1">
-            guarantees the confidentiality and security of your information.
-          </span>
-        </small>
+
+        {/* stripe info */}
+        <div className="flex mt-4 mb-2">
+          <div className="flex items-center justify-center mr-2 border-r border-slate-400 pr-4">
+            <FontAwesomeIcon icon={faStripe} className="text-4xl" />
+          </div>
+          <div className="ml-4">
+            <span>
+              Guarantees the security and confidentiality of your information.
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );
