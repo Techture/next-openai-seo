@@ -169,7 +169,7 @@ export default function AppLayout({
       {/* end of sidebar */}
 
       {/* Main Content */}
-      <main className="md:pl-80 w-full h-full p-4 pt-6">
+      <main className="md:pl-80 w-full hscreen p-0">
         {/* individual posts */}
         {children}
       </main>

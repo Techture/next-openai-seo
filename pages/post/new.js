@@ -43,7 +43,7 @@ export default function NewPost(props) {
   }, []);
 
   return (
-    <div className="h-screen">
+    <div className="flex justify-center items-center flex-1 h-screen p-4">
       {!!generating && (
         <div className="bg-cyan-600 flex h-full w-full flex-col justify-center items-center ">
           <BrainCircuit className="animate-pulse" color="cyan" size={180} />
@@ -51,7 +51,7 @@ export default function NewPost(props) {
         </div>
       )}
       {!generating && (
-        <div className="w-full h-full flex flex-col overflow-y-auto">
+        <div className="w-full h-full flex flex-col">
           <form
             onSubmit={handleSubmit}
             className="m-auto w-full max-w-screen-sm bg-slate-100 p-4 rounded-md shadow-xl border border-slate-200 shadow-slate-200"
