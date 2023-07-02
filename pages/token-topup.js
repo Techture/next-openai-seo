@@ -33,12 +33,12 @@ export default function TokenTopup() {
         </button>
 
         {/* stripe info */}
-        <div className="flex mt-4 mb-2">
-          <div className="flex items-center justify-center mr-2 border-r border-slate-400 pr-4">
+        <div className="flex items-center justify-center my-2">
+          <div className="flex border-r border-slate-400 pr-5">
             <FontAwesomeIcon icon={faStripe} className="text-4xl" />
           </div>
-          <div className="ml-4">
-            <span>
+          <div className="pl-5">
+            <span className="text-sm">
               Guarantees the security and confidentiality of your information.
             </span>
           </div>
