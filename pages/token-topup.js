@@ -28,7 +28,7 @@ export default function TokenTopup() {
           Click the Add Tokens button and you&apos;ll be directed to the Stripe
           payment page, where you can securely enter your payment details.
         </p>
-        <button className="btn my-5" onClick={handleClick}>
+        <button className="btn my-7" onClick={handleClick}>
           Add Tokens
         </button>
 
