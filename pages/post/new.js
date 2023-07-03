@@ -53,12 +53,12 @@ export default function NewPost(props) {
         </div>
       )}
       {!generating && (
-        <div className="w-full flex justify-center items-center mt-12 p-4 pt-7">
+        <div className="w-full flex justify-center items-center mt-12 p-4 pt-8">
           <div className="w-full flex flex-col items-center">
             <BrainCircuit
               className="animate-pulse pb-5"
               color="cyan"
-              size={170}
+              size={160}
             />
             <form
               onSubmit={handleSubmit}

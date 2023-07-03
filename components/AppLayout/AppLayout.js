@@ -178,7 +178,7 @@ export default function AppLayout({
       {/* end of sidebar */}
 
       {/* Toggle Button */}
-      <div className="md:hidden bg-slate-100 flex w-screen absolute top-0 right-0 z-10 justify-end">
+      <div className="md:hidden bg-slate-100 flex w-screen absolute top-0 right-0 z-10 justify-end shadow-lg">
         <div className="text-center bg-slate-100 text-slate-800 p-3 rounded-md">
           <button
             id="toggleSidebar"
