@@ -135,7 +135,7 @@ export default function AppLayout({
               ))}
               {!noMorePosts && (
                 <div
-                  className="hover:underline text-sm text-slate-400 text-center cursor-pointer my-5 pt-5"
+                  className="hover:underline text-sm text-slate-400 text-center cursor-pointer my-5 py-5"
                   onClick={() =>
                     getPosts({
                       lastPostDate: posts[posts.length - 1].created,
