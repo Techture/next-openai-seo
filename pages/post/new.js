@@ -43,57 +43,61 @@ export default function NewPost(props) {
   }, []);
 
   return (
-    <div className="w-full flex justify-center items-center flex-1 h-screen p-4">
+    <>
       {!!generating && (
-        <div className="bg-cyan-600 flex h-full w-full flex-col justify-center items-center ">
-          <BrainCircuit className="animate-pulse" color="cyan" size={180} />
-          <h5 className="text-cyan-300 animate-pulse">Generating...</h5>
+        <div className="bg-cyan-600 w-full flex justify-center items-center flex-1 h-screen p-4">
+          <div className=" flex h-full w-full flex-col justify-center items-center ">
+            <BrainCircuit className="animate-pulse" color="cyan" size={180} />
+            <h5 className="text-cyan-300 animate-pulse">Generating...</h5>
+          </div>
         </div>
       )}
       {!generating && (
-        <div className="w-full h-full flex flex-col">
-          <form
-            onSubmit={handleSubmit}
-            className="m-auto w-full max-w-screen-sm bg-slate-100 p-4 rounded-md shadow-xl border border-slate-200 shadow-slate-200"
-          >
-            <div>
-              <label>
-                <strong>Generate a blog post on the topic of:</strong>
-              </label>
-              <textarea
-                ref={topicInputRef}
-                className="resize-none border border-slate-500 w-full block my-2 px-4 py-2 rounded-sm"
-                value={topic}
-                onChange={(e) => setTopic(e.target.value)}
-                maxLength={80}
-              />
-            </div>
-
-            <div>
-              <label>
-                <strong>Targeting the following keywords:</strong>
-              </label>
-              <textarea
-                className="resize-none border border-slate-500 w-full block my-2 px-4 py-2 rounded-sm"
-                value={keywords}
-                onChange={(e) => setKeywords(e.target.value)}
-                maxLength={80}
-              />
-              <small className="block mb-2">
-                Separate keywords with a comma
-              </small>
-            </div>
-            <button
-              className="btn"
-              type="submit"
-              disabled={!topic.trim() || !keywords.trim()}
+        <div className="w-full flex justify-center items-center flex-1 h-screen p-4">
+          <div className="w-full h-full flex flex-col">
+            <form
+              onSubmit={handleSubmit}
+              className="m-auto w-full max-w-screen-sm bg-slate-100 p-4 rounded-md shadow-xl border border-slate-200 shadow-slate-200"
             >
-              Generate
-            </button>
-          </form>
+              <div>
+                <label>
+                  <strong>Generate a blog post on the topic of:</strong>
+                </label>
+                <textarea
+                  ref={topicInputRef}
+                  className="resize-none border border-slate-500 w-full block my-2 px-4 py-2 rounded-sm"
+                  value={topic}
+                  onChange={(e) => setTopic(e.target.value)}
+                  maxLength={80}
+                />
+              </div>
+
+              <div>
+                <label>
+                  <strong>Targeting the following keywords:</strong>
+                </label>
+                <textarea
+                  className="resize-none border border-slate-500 w-full block my-2 px-4 py-2 rounded-sm"
+                  value={keywords}
+                  onChange={(e) => setKeywords(e.target.value)}
+                  maxLength={80}
+                />
+                <small className="block mb-2">
+                  Separate keywords with a comma
+                </small>
+              </div>
+              <button
+                className="btn"
+                type="submit"
+                disabled={!topic.trim() || !keywords.trim()}
+              >
+                Generate
+              </button>
+            </form>
+          </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
 
