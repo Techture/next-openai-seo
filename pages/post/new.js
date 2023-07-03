@@ -53,7 +53,7 @@ export default function NewPost(props) {
         </div>
       )}
       {!generating && (
-        <div className="w-full flex justify-center items-center flex-1 h-screen p-4">
+        <div className="w-full flex justify-center items-center flex-1 h-screen p-4 pt-0">
           <div className="w-full h-full flex flex-col">
             <form
               onSubmit={handleSubmit}
