@@ -36,13 +36,12 @@ export default function Post(props) {
   return (
     <div className="overflow-auto h-screen pt-11 p-2">
       <div className="max-w-screen-sm mx-auto">
-        <div className="text-sm font-bold mt-6 p-2 bg-stone-200 rounded-sm">
-          SEO title and meta description
+        {/* Blog Post */}
+        <div className="text-sm font-bold my-2 mt-7 p-2 bg-stone-200 rounded-sm">
+          Blog Post
         </div>
-        <div className="p-4 my-2 border border-stone-200 rounded-md">
-          <div className="text-blue-600 text-2xl font-bold">{props.title}</div>
-          <div className="mt-2 text-2xl font-bold">{props.metaDescription}</div>
-        </div>
+        <div dangerouslySetInnerHTML={{ __html: props.postContent || '' }} />
+        {/* Keywords */}
         <div className="text-sm font-bold mt-6 p-2 bg-stone-200 rounded-sm">
           Keywords
         </div>
@@ -53,15 +52,20 @@ export default function Post(props) {
             </div>
           ))}
         </div>
-        <div className="text-sm font-bold my-2 p-2 bg-stone-200 rounded-sm">
-          Blog Post
+        {/* SEO title and meta description */}
+        <div className="text-sm font-bold p-2 bg-stone-200 rounded-sm">
+          SEO title and meta description
         </div>
-        <div dangerouslySetInnerHTML={{ __html: props.postContent || '' }} />
+        <div className="p-4 my-2 border border-stone-200 rounded-md">
+          <div className="text-blue-600 text-2xl font-bold">{props.title}</div>
+          <div className="mt-2 text-2xl font-bold">{props.metaDescription}</div>
+        </div>
 
+        {/* delete button */}
         <div className="my-6 w-80 m-auto">
           {!showDeleteConfirm && (
             <button
-              className="btn bg-red-600 hover:bg-red-700"
+              className="btn text-white bg-red-600 hover:bg-red-700"
               onClick={() => {
                 setShowDeleteConfirm(true);
               }}
@@ -72,7 +76,7 @@ export default function Post(props) {
           {!!showDeleteConfirm && (
             <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
               <div className="bg-white p-5 rounded-md">
-                <p className="p-3 bg-red-300 text-center rounded-md">
+                <p className="p-3 text-center rounded-md">
                   Are you sure you want to delete this post? This action is
                   irreversible
                 </p>
@@ -84,7 +88,7 @@ export default function Post(props) {
                     cancel
                   </button>
                   <button
-                    className="btn bg-red-600 hover:bg-red-700"
+                    className="btn text-white bg-red-600 hover:bg-red-700"
                     onClick={handleDeleteConfirm}
                   >
                     confirm delete
