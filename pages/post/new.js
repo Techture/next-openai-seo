@@ -57,7 +57,7 @@ export default function NewPost(props) {
           <div className="w-full flex flex-col items-center">
             <BrainCircuit
               className="animate-pulse pb-5"
-              color="cyan"
+              color="#185c72"
               size={160}
             />
             <form

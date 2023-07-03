@@ -82,7 +82,7 @@ export default function Post(props) {
                 </p>
                 <div className="grid grid-cols-2 gap-2 mt-4">
                   <button
-                    className="btn bg-stone-600 hover:bg-stone-700"
+                    className="btn bg-stone-600 text-white hover:bg-stone-700"
                     onClick={() => setShowDeleteConfirm(false)}
                   >
                     cancel
