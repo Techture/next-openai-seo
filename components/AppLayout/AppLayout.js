@@ -7,6 +7,9 @@ import Link from 'next/link';
 import { Logo } from '../Logo';
 import PostsContext from '../../context/postsContext';
 
+import 'simplebar/dist/simplebar.min.css';
+import SimpleBar from 'simplebar-react';
+
 export default function AppLayout({
   children,
   availableTokens,
@@ -80,69 +83,73 @@ export default function AppLayout({
       <aside
         className={`${
           sidebarOpen ? 'md:translate-x-0 z-30' : '-translate-x-full z-20'
-        } w-80 bg-gray-800 text-white py-4 space-y-5 md:block fixed inset-y-0 left-0 overflow-y-auto transition-transform duration-300 ease-in-out flex flex-col`}
+        } w-80 bg-gray-800 text-white py-4 space-y-5 fixed inset-y-0 left-0 overflow-y-auto transition-transform duration-300 ease-in-out flex flex-col`}
         id="sidebar"
       >
         {/* upper div to keep user at the bottom of the sidebar */}
-        <div className="flex flex-col flex-grow">
-          {/* Logo */}
-          <div className="block">
-            <div className="align-center bg-slate-800 px-5">
-              <Logo size="small" />
+        <div className="flex flex-col flex-grow overflow-y-auto">
+          <SimpleBar style={{ maxHeight: '100%', paddingRight: '8px' }}>
+            {/* Logo */}
+            <div className="block">
+              <div className="align-center bg-slate-800 px-5">
+                <Logo size="small" />
 
-              <Link
-                href="/post/new"
-                className="btn my-7"
-                onClick={isMobileView ? handleToggleSidebar : null}
-              >
-                New Post
-              </Link>
+                <Link
+                  href="/post/new"
+                  className="btn my-7"
+                  onClick={isMobileView ? handleToggleSidebar : null}
+                >
+                  New Post
+                </Link>
 
-              <Link
-                href="/token-topup"
-                className="block my-7 text-center"
-                onClick={isMobileView ? handleToggleSidebar : null}
-              >
-                <FontAwesomeIcon
-                  icon={faCoins}
-                  className="text-yellow-500 mr-1"
-                />
+                <Link
+                  href="/token-topup"
+                  className="block my-7 text-center"
+                  onClick={isMobileView ? handleToggleSidebar : null}
+                >
+                  <FontAwesomeIcon
+                    icon={faCoins}
+                    className="text-yellow-500 mr-1"
+                  />
 
-                <span className="pl-1">{availableTokens} Tokens Available</span>
-              </Link>
-            </div>
-          </div>
-
-          {/* Posts */}
-          <div className="pt-3 px-4 pb-10 overflow-auto bg-gradient-to-b from-cyan-800 to-slate-800 space-y-2 flex flex-col">
-            {posts.map((post) => (
-              <Link
-                key={post._id}
-                href={`/post/${post._id}`}
-                className={`flex-grow py-1 border border-white/0 block text-ellipsis whitespace-nowrap my-1 px-2 bg-white/10 cursor-pointer rounded-sm ${
-                  postId === post._id ? 'bg-white/20 border-white' : ''
-                }`}
-                onClick={isMobileView ? handleToggleSidebar : null}
-              >
-                {trimText(post.topic)}
-              </Link>
-            ))}
-            {!noMorePosts && (
-              <div
-                className="hover:underline text-sm text-slate-400 text-center cursor-pointer my-5 pt-5"
-                onClick={() =>
-                  getPosts({ lastPostDate: posts[posts.length - 1].created })
-                }
-              >
-                Load more posts
+                  <span className="pl-1">
+                    {availableTokens} Tokens Available
+                  </span>
+                </Link>
               </div>
-            )}
-          </div>
+            </div>
+
+            {/* Posts */}
+            <div className="pt-3 px-4 pb-10 overflow-auto bg-gradient-to-b from-cyan-800 to-slate-800 space-y-2 flex flex-col">
+              {posts.map((post) => (
+                <Link
+                  key={post._id}
+                  href={`/post/${post._id}`}
+                  className={`flex-grow py-1 border border-white/0 block text-ellipsis whitespace-nowrap my-1 px-2 bg-white/10 cursor-pointer rounded-sm ${
+                    postId === post._id ? 'bg-white/20 border-white' : ''
+                  }`}
+                  onClick={isMobileView ? handleToggleSidebar : null}
+                >
+                  {trimText(post.topic)}
+                </Link>
+              ))}
+              {!noMorePosts && (
+                <div
+                  className="hover:underline text-sm text-slate-400 text-center cursor-pointer my-5 pt-5"
+                  onClick={() =>
+                    getPosts({ lastPostDate: posts[posts.length - 1].created })
+                  }
+                >
+                  Load more posts
+                </div>
+              )}
+            </div>
+          </SimpleBar>
         </div>
 
         {/* lower div to keep user at the bottom of the sidebar */}
         {/* User*/}
-        <div className="bg-slate-800 flex w-full items-center gap-2 border-t border-t-black/50 h-20 px-2">
+        <div className="bg-slate-800 flex w-full items-center gap-2 border-t border-t-black/50 h-20 px-2 pt-4">
           {!!user ? (
             <>
               <div className="min-width-[50px]">
