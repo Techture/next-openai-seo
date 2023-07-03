@@ -56,9 +56,9 @@ export default function Post(props) {
         <div className="text-sm font-bold p-2 bg-stone-200 rounded-sm">
           SEO title and meta description
         </div>
-        <div className="p-4 my-2 border border-stone-200 rounded-md">
-          <div className="text-blue-600 text-2xl font-bold">{props.title}</div>
-          <div className="mt-2 text-2xl font-bold">{props.metaDescription}</div>
+        <div className="text-md p-4 my-2 border border-stone-200 rounded-md">
+          <div className="text-blue-600 font-bold">{props.title}</div>
+          <div className="mt-2 font-bold">{props.metaDescription}</div>
         </div>
 
         {/* delete button */}
