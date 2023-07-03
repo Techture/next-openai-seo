@@ -83,11 +83,11 @@ export default function AppLayout({
       <aside
         className={`${
           sidebarOpen ? 'md:translate-x-0 z-30' : '-translate-x-full z-20'
-        } w-80 bg-gray-800 text-white py-4 space-y-5 fixed inset-y-0 left-0 overflow-y-auto transition-transform duration-300 ease-in-out flex flex-col`}
+        } w-80 bg-gray-800 text-white py-4 space-y-2 fixed inset-y-0 left-0 overflow-y-auto transition-transform duration-300 ease-in-out flex flex-col`}
         id="sidebar"
       >
         {/* upper div to keep user at the bottom of the sidebar */}
-        <div className="flex flex-col flex-grow overflow-y-auto">
+        <div className="flex flex-col flex-grow overflow-y-auto mb-0">
           <SimpleBar style={{ maxHeight: '100%', paddingRight: '8px' }}>
             {/* Logo */}
             <div className="block">
@@ -120,7 +120,7 @@ export default function AppLayout({
             </div>
 
             {/* Posts */}
-            <div className="pt-3 px-4 pb-10 overflow-auto bg-gradient-to-b from-cyan-800 to-slate-800 space-y-2 flex flex-col">
+            <div className="pt-3 px-4 pb-0 overflow-auto bg-gradient-to-b from-cyan-800 to-slate-800 space-y-2 flex flex-col">
               {posts.map((post) => (
                 <Link
                   key={post._id}
