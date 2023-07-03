@@ -137,7 +137,9 @@ export default function AppLayout({
                 <div
                   className="hover:underline text-sm text-slate-400 text-center cursor-pointer my-5 pt-5"
                   onClick={() =>
-                    getPosts({ lastPostDate: posts[posts.length - 1].created })
+                    getPosts({
+                      lastPostDate: posts[posts.length - 1].created,
+                    })
                   }
                 >
                   Load more posts
@@ -175,32 +177,16 @@ export default function AppLayout({
       </aside>
       {/* end of sidebar */}
 
-      {/* Main Content */}
-      <main className="md:pl-80 w-full hscreen p-0">
-        {/* individual posts */}
-        {children}
-      </main>
-
-      {/* Overlay */}
-      {isMobileView && (
-        <div
-          className={`top-0 left-0 w-full h-full bg-black ${
-            overlayVisible ? 'opacity-70 fixed' : 'opacity-0'
-          } z-10`}
-          onClick={handleToggleSidebar}
-        />
-      )}
-
       {/* Toggle Button */}
-      <div className="w-full bg-slate-500">
-        <div className="text-center md:hidden absolute bg-slate-200 text-slate-800 p-2 rounded-md top-2 right-2 z-50">
+      <div className="md:hidden bg-slate-100 flex w-screen absolute top-0 right-0 z-10 justify-end">
+        <div className="text-center bg-slate-100 text-slate-800 p-3 rounded-md">
           <button
             id="toggleSidebar"
             className="text-black focus:outline-none"
             onClick={handleToggleSidebar}
           >
             <svg
-              className="w-7 h-5"
+              className="w-7 h-7"
               fill="none"
               stroke="black"
               viewBox="0 0 20 20"
@@ -215,6 +201,23 @@ export default function AppLayout({
           </button>
         </div>
       </div>
+
+      {/* Main Content */}
+      <main className="md:pl-80 w-full h-full">
+        {/* individual posts */}
+        {/* <div className="w-screen h-12"></div> */}
+        {children}
+      </main>
+
+      {/* Overlay */}
+      {isMobileView && (
+        <div
+          className={`top-0 left-0 w-full h-full bg-black ${
+            overlayVisible ? 'opacity-70 fixed' : 'opacity-0'
+          } z-10`}
+          onClick={handleToggleSidebar}
+        />
+      )}
     </div>
   );
 }
