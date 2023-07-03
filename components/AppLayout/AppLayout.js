@@ -205,7 +205,6 @@ export default function AppLayout({
       {/* Main Content */}
       <main className="md:pl-80 w-full h-full">
         {/* individual posts */}
-        {/* <div className="w-screen h-12"></div> */}
         {children}
       </main>
 
