@@ -121,19 +121,20 @@ export default function AppLayout({
 
             {/* Posts */}
             <div className="pt-3 px-4 pb-0 overflow-auto bg-gradient-to-b from-cyan-800 to-slate-800 space-y-2 flex flex-col">
-              {posts.map((post) => (
-                <Link
-                  key={post._id}
-                  href={`/post/${post._id}`}
-                  className={`flex-grow py-1 border border-white/0 block text-ellipsis whitespace-nowrap my-1 px-2 bg-white/10 cursor-pointer rounded-sm ${
-                    postId === post._id ? 'bg-white/20 border-white' : ''
-                  }`}
-                  onClick={isMobileView ? handleToggleSidebar : null}
-                >
-                  {trimText(post.topic)}
-                </Link>
-              ))}
-              {!noMorePosts && (
+              {posts.length > 0 &&
+                posts.map((post) => (
+                  <Link
+                    key={post._id}
+                    href={`/post/${post._id}`}
+                    className={`flex-grow py-1 border border-white/0 block text-ellipsis whitespace-nowrap my-1 px-2 bg-white/10 cursor-pointer rounded-sm ${
+                      postId === post._id ? 'bg-white/20 border-white' : ''
+                    }`}
+                    onClick={isMobileView ? handleToggleSidebar : null}
+                  >
+                    {trimText(post.topic)}
+                  </Link>
+                ))}
+              {posts.length >= 5 && !noMorePosts && (
                 <div
                   className="hover:underline text-sm text-slate-400 text-center cursor-pointer my-5 py-5"
                   onClick={() =>
