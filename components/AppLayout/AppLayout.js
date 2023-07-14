@@ -68,7 +68,7 @@ export default function AppLayout({
   }, [getPosts, postId, postCreated, postsFromSSR, setPostsFromSSR]);
 
   // adjust character length for post - make this a utility
-  const MAX_CHARACTERS = 33;
+  const MAX_CHARACTERS = 35;
 
   const trimText = (text) => {
     if (text.length > MAX_CHARACTERS) {
