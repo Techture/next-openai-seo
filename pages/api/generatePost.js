@@ -47,7 +47,7 @@ export default withApiAuthRequired(async function handler(req, res) {
       },
       {
         role: 'user',
-        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}. The response should be formatted in SEO-friendly HTML, limited to the following HTML tags, : h1, h2, h3, h4, h5, h6, strong, li, ol, ul i, but please do not include the actual HTML tags in the response`,
+        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}. The response should be formatted in SEO-friendly HTML, limited to the following HTML tags: h1, h2, h3, h4, h5, h6, strong, li, ol, ul i, but please do not include the actual HTML tags or html markup in the response`,
       },
     ],
   });
@@ -66,7 +66,7 @@ export default withApiAuthRequired(async function handler(req, res) {
       },
       {
         role: 'user',
-        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}. The response should be formatted in SEO-friendly HTML, limited to the following HTML tags: h1, h2, h3, h4, h5, h6, strong, li, ol, ul i, but please do not include the actual HTML tags in the response`,
+        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}. The response should be formatted in SEO-friendly HTML, limited to the following HTML tags: h1, h2, h3, h4, h5, h6, strong, li, ol, ul i, but please do not include the actual HTML tags or html markup in the response`,
       },
       {
         role: 'assistant',
@@ -90,7 +90,7 @@ export default withApiAuthRequired(async function handler(req, res) {
       },
       {
         role: 'user',
-        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}. The response should be formatted in SEO-friendly HTML, limited to the following HTML tags: h1, h2, h3, h4, h5, h6, strong, li, ol, ul i, but please do not include the actual HTML tags in the response`,
+        content: `Write a long and detailed SEO-friendly blog post about ${topic}, that targets the following comma-separated keywords: ${keywords}. The response should be formatted in SEO-friendly HTML, limited to the following HTML tags: h1, h2, h3, h4, h5, h6, strong, li, ol, ul i, but please do not include the actual HTML tags or html markup in the response`,
       },
       {
         role: 'assistant',
