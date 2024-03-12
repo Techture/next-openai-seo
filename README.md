@@ -1,3 +1,5 @@
+# BlogOptima is an all-in-one platform that combines advanced SEO techniques with a secure authorization platform and powerful AI capabilities.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
