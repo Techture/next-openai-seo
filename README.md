@@ -1,4 +1,4 @@
-# BlogOptima is an all-in-one platform that combines advanced SEO techniques with a secure authorization platform and powerful AI capabilities.
+## BlogOptima is an all-in-one platform that combines advanced SEO techniques with a secure authorization platform and powerful AI capabilities.
 
 ### https://blogoptima.com/
 
