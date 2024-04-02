@@ -27,7 +27,7 @@ yarn dev
 
 To fully utilize BlogOptima's capabilities, you'll need to configure several API keys. Create a `.env.local` file in the `root` directory and populate it with the necessary API keys:
 
-Replace each value with your corresponding keys
+Replace each value with your corresponding keys:
 
 ```
 AUTH0_SECRET=your_auth0_secret
@@ -43,9 +43,7 @@ STRIPE_PRODUCT_PRICE_ID=your_stripe_product_price_id
 STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 ```
 
-Begin by editing `pages/index.js`. As you make changes, the page will automatically update.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Once your API keys are in place, begin by editing `pages/index.js`.
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
@@ -56,7 +54,3 @@ Deepen your understanding of Next.js: [Next.js Documentation](https://nextjs.org
 ### Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-# next-openai-seo
