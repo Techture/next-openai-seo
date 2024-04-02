@@ -25,11 +25,10 @@ yarn dev
 
 ### API Configuration
 
-To fully utilize BlogOptima's capabilities, you'll need to configure several API keys. Create a `.env.local` file in the `root` directory and populate it with the necessary API keys:
-
-Replace each value with your corresponding keys:
+To utilize all features of BlogOptima, you need to configure your API keys in a `.env.local` file in the `root` directory. Here's a template for the required keys:
 
 ```
+# Replace each value with your corresponding keys
 AUTH0_SECRET=your_auth0_secret
 AUTH0_BASE_URL=http://localhost:3000
 AUTH0_ISSUER_BASE_URL=your_auth0_issuer_base_url
@@ -42,6 +41,8 @@ STRIPE_SECRET_KEY=your_stripe_secret_key
 STRIPE_PRODUCT_PRICE_ID=your_stripe_product_price_id
 STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
 ```
+
+Ensure you replace the placeholder values with the actual keys you obtain from the respective service providers.
 
 Once your API keys are in place, begin by editing `pages/index.js`.
 
